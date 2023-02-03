@@ -14,5 +14,5 @@ public:
 	vector<Chapter> chapters;
 	string bookName;
 	Textbook(string name, int numChapters, vector<int> numProblems);
-	void getShuffle(vector<int> chapters);
+	void getShuffle(vector<int> chapsToStudy);
 };
