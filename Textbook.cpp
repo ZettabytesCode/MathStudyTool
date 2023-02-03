@@ -5,7 +5,7 @@
 using namespace std;
 
 Textbook::Textbook(string name, int numChapters, vector<int> numProblems){
-	if(numChapters != numProblems.size();){
+	if(numChapters != numProblems.size()){
 		cout << "Error loading Textbook: " << name << endl;
 		return;
 	}
@@ -20,17 +20,18 @@ Textbook::Textbook(string name, int numChapters, vector<int> numProblems){
 void Textbook::getShuffle(vector<int> chapsToStudy){
 	vector<string> listOfProblems;
 	for(int chap : chapsToStudy){
-		for(int i = 1; i <= chapters[i].numProblems; ++i){
-			listOfProblems.push_back(chap + "." + i);
+		for(int i = 1; i <= chapters[chap].numProblems; ++i){
+			//cout << to_string(chap) + "." + to_string(i) << endl;
+			listOfProblems.push_back(to_string(chap) + "." + to_string(i));
 		}
 	}
 	
 	srand(time(NULL));	
-	for(i = listOfProblems.size() - 1; i > 0; --i){
+	for(int i = listOfProblems.size() - 1; i > 0; --i){
 		int randSwap = rand() % (i+1);
 		string temp = listOfProblems[i];
 		listOfProblems[i] = listOfProblems[randSwap];	
-		listOfProblems[randSwap] = listOfProblems[temp];	
+		listOfProblems[randSwap] = temp;	
 	}
 
 	for(string problem : listOfProblems){
