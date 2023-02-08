@@ -13,8 +13,33 @@ bool quit(vector<string> args){
 	return false;	
 }
 
+
+bool add(vector<string> args){
+	cout << "Quiting..." << endl;
+	return false;	
+}
+
+bool problems(vector<string> args){
+	cout << "Quiting..." << endl;
+	return false;	
+}
+
+bool help(vector<string> args){
+	cout << "Command Usages:" << endl;
+	
+	cout << "quit ---- quits application" << endl;
+	cout << "help ---- this command :)" << endl;
+	cout << "add {book name} {n} {a,b,c,d} ----- adds book with n chapters with chapter 1 having a problems etc..." << endl;
+	cout << "problems {book} {a,b,c} ----- gets a random sample of problems for chapters a,b,c" << endl;
+	return true;
+}
+
+
 void setup(){
 	commandMap["quit"] = quit;
+	commandMap["help"] = help;
+	commandMap["add"] = add;
+	commandMap["problems"] = problems;
 }
 
 int main(){
@@ -60,6 +85,10 @@ bool executeCommand(string line){
 	vector<string> parsed = parseCommand(line);
 	if(parsed.size() == 0){
 		cout << "Parse error..." << endl;
+		return true;
+	}
+	if(commandMap.find(parsed[0]) == commandMap.end()){
+		cout << "That was not a valid command... Use help to see command details" << endl;
 		return true;
 	}
 	return (commandMap.find(parsed[0])->second)(parsed);
