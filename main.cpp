@@ -1,4 +1,6 @@
 #include "Textbook.h"
+#include "main.h"
+#include <iostream>
 
 using namespace std;
 
@@ -25,5 +27,9 @@ int main(){
 	}
 	
 	rudin.getShuffle(chapters);
+
+}
+
+void toolLoop(){
 
 }
