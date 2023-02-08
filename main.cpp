@@ -7,6 +7,7 @@
 using namespace std;
 
 unordered_map<string, command> commandMap;
+unordered_map<string, Textbook> bookMap;
 
 bool quit(vector<string> args){
 	cout << "Quiting..." << endl;
@@ -84,7 +85,7 @@ void toolLoop(){
 bool executeCommand(string line){
 	vector<string> parsed = parseCommand(line);
 	if(parsed.size() == 0){
-		cout << "Parse error..." << endl;
+		cout << "Parse error... Use help to see how to format" << endl;
 		return true;
 	}
 	if(commandMap.find(parsed[0]) == commandMap.end()){
@@ -96,6 +97,17 @@ bool executeCommand(string line){
 
 vector<string> parseCommand(string line){
 	vector<string> output;
-	output.push_back(line);
+	string commandName = "";
+	int spacePos = 0;
+
+	while(spacePos != line.size()){
+		int nextSpacePos = line.find(" ", spacePos);
+		if(nextSpacePos == -1){
+			nextSpacePos = line.size();
+		}
+		string arg = line.substr(spacePos, nextSpacePos - spacePos);
+		output.push_back(arg);
+		spacePos = nextSpacePos;
+	}
 	return output;
 }
